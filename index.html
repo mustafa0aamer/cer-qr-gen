@@ -16,6 +16,25 @@
   <body class="bg-slate-50 text-slate-900 antialiased selection:bg-blue-600 selection:text-white">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // When served directly as static files from root (e.g. GitHub Pages branch deployment without Vite dev server),
+      // automatically load the prebuilt production bundle from ./dist/assets/
+      window.addEventListener('DOMContentLoaded', function () {
+        var isViteDev = !!document.querySelector('script[src*="@vite/client"]');
+        var isBuiltHtml = !!document.querySelector('script[src*="assets/app.js"]');
+        if (!isViteDev && !isBuiltHtml) {
+          var link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = './dist/assets/app.css';
+          document.head.appendChild(link);
+
+          var script = document.createElement('script');
+          script.type = 'module';
+          script.src = './dist/assets/app.js';
+          document.body.appendChild(script);
+        }
+      });
+    </script>
   </body>
 </html>
 
