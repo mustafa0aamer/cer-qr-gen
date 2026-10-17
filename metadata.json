@@ -1,0 +1,6 @@
+{
+  "name": "مُوثّق الشهادات التدريبية | Certificate & QR Merger",
+  "description": "أداة لدمج شهادة التدريب الصيفي مع روابط التوثيق ورموز QR في ملف PDF واحد جاهز للتسليم.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
