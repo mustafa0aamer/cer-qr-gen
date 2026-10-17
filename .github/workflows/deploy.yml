@@ -24,17 +24,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build static site
-        run: npm run build
+      - name: Build static site if dist is not prebuilt
+        run: |
+          if [ ! -f "./dist/index.html" ]; then
+            npm install --legacy-peer-deps --no-audit --no-fund
+            npm run build
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
